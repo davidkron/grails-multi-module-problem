@@ -58,6 +58,12 @@ dependencies {
     testCompile "org.grails:grails-web-testing-support"
 }
 
+grails {
+    plugins {
+        compile project(':myplugin')
+    }
+}
+
 bootRun {
     ignoreExitValue true
     jvmArgs(

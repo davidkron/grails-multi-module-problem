@@ -74,7 +74,22 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0"
 }
 
+grails {
+    plugins {
+        compile project(':myplugin2')
+    }
+}
+
 bootRun {
+    // print classpath of bootRun task
+    doFirst {
+        classpath.each {
+            if (!it.absolutePath.contains('.gradle') && !it.absolutePath.contains('.m2')) {
+                println it
+            }
+        }
+    }
+
     ignoreExitValue true
     jvmArgs(
         '-Dspring.output.ansi.enabled=always', 
