@@ -85,7 +85,9 @@ bootRun {
     doFirst {
         classpath.each {
             if (!it.absolutePath.contains('.gradle') && !it.absolutePath.contains('.m2')) {
-                println it
+                // since every plugin has exploded=true set in gradle.properties,
+                // there should be no .jar dependency from a project from the gradle build on the classpath
+                assert !it.name.endsWith('.jar')
             }
         }
     }
